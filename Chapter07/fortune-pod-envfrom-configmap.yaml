@@ -7,7 +7,8 @@ spec:
   - image: luksa/fortune:env
   # Using envFrom instead of env to pass all all entries of a ConfigMap as environment variables at once
     envFrom:
-    # All environment variables will be prefixed with CONFIG_. The prefix here is optional to use.
+    # All environment variables will be prefixed with CONFIG_. The prefix here is optional to use. 
+    # So if you omit it the environment variables will have the same name as the keys.
     - prefix: CONFIG_
         configMapKeyRef:
           name: fortune-config
