@@ -27,7 +27,10 @@ spec:
   - name: config
     configMap:
       name: fortune-config
+      # Selecting which entries to include in the volume by listing them
       items:
+      # You want the entry under this key included
       - key: my-nginx-config.conf
+        # The entry’s value should be stored in this file.
         path: gzip.conf
 
