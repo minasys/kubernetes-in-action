@@ -22,6 +22,7 @@ spec:
       mountPath: /usr/share/nginx/html
       readOnly: true
     - name: config
+      # You’re mounting the configMap volume at this location.
       mountPath: /etc/nginx/conf.d
       readOnly: true
     - name: config
@@ -34,6 +35,7 @@ spec:
   volumes:
   - name: html
     emptyDir: {}
+  #The volume refers to your fortune-config ConfigMap.
   - name: config
     configMap:
       name: fortune-config
