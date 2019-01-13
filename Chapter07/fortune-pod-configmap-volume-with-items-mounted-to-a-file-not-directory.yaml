@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: fortune-configmap-volume-with-items
+  name: fortune-configmap-volume-with-item-mounted-to-file
 spec:
   containers:
   - image: luksa/fortune:env
