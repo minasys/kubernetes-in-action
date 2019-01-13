@@ -4,6 +4,7 @@ metadata:
   name: fortune-args-from-configmap
 spec:
   containers:
+  # Using the image that takes the interval from the first argument, not from an environment variable
   - image: luksa/fortune:args
     env:
     - name: INTERVAL
@@ -11,6 +12,7 @@ spec:
         configMapKeyRef:
           name: fortune-config
           key: sleep-interval
+    # Referencing the environment variable in the argument
     args: ["$(INTERVAL)"]
     name: html-generator
     volumeMounts:
