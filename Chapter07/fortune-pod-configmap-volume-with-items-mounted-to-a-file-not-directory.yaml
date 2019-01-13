@@ -18,6 +18,10 @@ spec:
     - name: config
       mountPath: /etc/nginx/conf.d/
       readOnly: true
+      # by using subPath, we mount the item hosts into /etc/hosts, instead of overriding the whole /etc directoy
+    - name: config
+      mountPath: /etc/
+      subPath: hosts
     ports:
     - containerPort: 80
       protocol: TCP
