@@ -33,4 +33,5 @@ spec:
   - name: config
     configMap:
       name: fortune-config
+      # This sets the permissions for all files to -rw-rw------.
       defaultMode: 0660
