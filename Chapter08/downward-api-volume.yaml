@@ -23,22 +23,27 @@ spec:
       limits:
         cpu: 100m
         memory: 4Mi
+    # You’re mounting the downward volume under /etc/downward.
     volumeMounts:
     - name: downward
       mountPath: /etc/downward
   volumes:
+  # You’re defining a downwardAPI volume with the name downward.
   - name: downward
     downwardAPI:
       items:
+      # The pod’s name (from the metadata.name field in the manifest) will be written to the podName file.
       - path: "podName"
         fieldRef:
           fieldPath: metadata.name
       - path: "podNamespace"
         fieldRef:
           fieldPath: metadata.namespace
+      # The pod’s labels will be written to the /etc/downward/labels file.
       - path: "labels"
         fieldRef:
           fieldPath: metadata.labels
+      # The pod’s annotations will be written to the /etc/downward/annotations file.
       - path: "annotations"
         fieldRef:
           fieldPath: metadata.annotations
