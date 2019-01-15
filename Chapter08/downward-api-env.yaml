@@ -16,6 +16,7 @@ spec:
         memory: 4Mi
     env:
     - name: POD_NAME
+      # Instead of specifying an absolute value, you’re referencing the metadata.name field from the pod manifest.
       valueFrom:
         fieldRef:
           fieldPath: metadata.name
@@ -37,8 +38,10 @@ spec:
           fieldPath: spec.serviceAccountName
     - name: CONTAINER_CPU_REQUEST_MILLICORES
       valueFrom:
+        # A container’s CPU and memory requests and limits are referenced by using resourceFieldRef instead of fieldRef.
         resourceFieldRef:
           resource: requests.cpu
+          # For resource fields, you define a divisor to get the value in the unit you need.
           divisor: 1m
     - name: CONTAINER_MEMORY_LIMIT_KIBIBYTES
       valueFrom:
