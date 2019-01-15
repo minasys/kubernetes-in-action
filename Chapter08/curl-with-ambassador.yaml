@@ -7,5 +7,6 @@ spec:
   - name: main
     image: tutum/curl
     command: ["sleep", "9999999"]
+  # The ambassador container, running the kubectl-proxy image
   - name: ambassador
     image: luksa/kubectl-proxy:1.6.2
