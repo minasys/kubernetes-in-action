@@ -5,5 +5,7 @@ metadata:
 spec:
   containers:
   - name: main
+    # Using the tutum/curl image, because you need curl available in the container
     image: tutum/curl
+    # You’re running the sleep command with a long delay to keep your container running.
     command: ["sleep", "9999999"]
