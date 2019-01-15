@@ -4,6 +4,7 @@ metadata:
   name: downward
   labels:
     foo: bar
+  # These labels and annotations will be exposed through the downwardAPI volume.
   annotations:
     key1: value1
     key2: |
