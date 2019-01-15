@@ -3,7 +3,11 @@ kind: Pod
 metadata:
   name: private-pod
 spec:
+  # This enables pulling images from a private image registry.
   imagePullSecrets:
+  # to create that secret run the following command: kubectl create secret docker-registry mydockerhubsecret \
+  #--docker-username=myusername --docker-password=mypassword \
+  #--docker-email=my.email@provider.com
   - name: mydockerhubsecret
   containers:
   - image: username/private:tag
