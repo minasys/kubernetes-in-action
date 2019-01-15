@@ -49,6 +49,7 @@ spec:
           fieldPath: metadata.annotations
       - path: "containerCpuRequestMilliCores"
         resourceFieldRef:
+          # Container name must be specified when exposing container-level metadata
           containerName: main
           resource: requests.cpu
           divisor: 1m
