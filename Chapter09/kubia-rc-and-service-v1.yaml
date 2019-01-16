@@ -11,9 +11,13 @@ spec:
         app: kubia
     spec:
       containers:
+      # You’re creating a ReplicationController for pods running this image.
       - image: luksa/kubia:v1
         name: nodejs
+
+# YAML files can contain multiple resource definitions separated by a line with three dashes.
 ---
+# The Service fronts all pods created by the ReplicationController.
 apiVersion: v1
 kind: Service
 metadata:
