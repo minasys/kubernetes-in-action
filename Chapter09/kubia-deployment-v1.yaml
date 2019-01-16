@@ -1,6 +1,9 @@
+# Deployments are in the apps API group, version v1beta1.
 apiVersion: apps/v1beta1
+# You’ve changed the kind from ReplicationController to Deployment.
 kind: Deployment
 metadata:
+  # There’s no need to include the version in the name of the Deployment.
   name: kubia
 spec:
   replicas: 3
