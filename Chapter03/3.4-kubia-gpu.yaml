@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: kubia-gpu
 spec:
+  # nodeSelector tells Kubernetes to deploy this pod only to nodes containing the gpu=true label.
   nodeSelector:
     gpu: "true"
   containers:
