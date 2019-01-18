@@ -5,6 +5,7 @@ metadata:
 spec:
   containers:
   - image: luksa/fortune:env
+    # Adding a single variable to the environment variable list
     env:
     - name: INTERVAL
       value: "30"
