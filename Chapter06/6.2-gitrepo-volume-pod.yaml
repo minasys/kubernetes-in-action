@@ -15,8 +15,12 @@ spec:
       protocol: TCP
   volumes:
   - name: html
+    # You’re creating a gitRepo volume.
     gitRepo:
+      # The volume will clone this Git repository.
       repository: https://github.com/luksa/kubia-website-example.git
+      # The master branch will be checked out.
       revision: master
+      # You want the repo to be cloned into the root dir of the volume.
       directory: .
 
