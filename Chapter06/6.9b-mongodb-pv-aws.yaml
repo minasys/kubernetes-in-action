@@ -12,7 +12,7 @@ spec:
     - ReadOnlyMany
   # After the claim is released, the PersistentVolume should be retained (not erased or deleted).
   persistentVolumeReclaimPolicy: Retain
-  # The PersistentVolume is backed by the GCE Persistent Disk you created earlier.
+  # The PersistentVolume is backed by the AWS Persistent Disk you created earlier.
   awsElasticBlockStore:
     volumeID: my-volume
     fsType: ext4
