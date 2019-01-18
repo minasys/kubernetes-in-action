@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: kubia
+ annotations:
+   kubernetes.io/ingress.class: alb
+   alb.ingress.kubernetes.io/scheme: internet-facing
+   alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:173279489542:certificate/bb23322d-0cc9-4cd2-94ee-0215cd949b05
+   alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+
+spec:
+ rules:
+ - host: kubia.example.com
+ http:
+ paths:
+ - path: /
+ backend:
+ serviceName: kubia-nodeport
+ servicePort: 80
