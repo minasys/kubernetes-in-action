@@ -5,8 +5,11 @@ metadata:
 spec:
   volumes:
   - name: mongodb-data
+    # This volume is backed by an NFS share.
     nfs:
+      # The IP of the NFS server
       server: 1.2.3.4
+      # The path exported by the server
       path: /some/path
   containers:
   - image: mongo
