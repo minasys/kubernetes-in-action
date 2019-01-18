@@ -4,9 +4,11 @@ metadata:
   name: kubia
 spec:
   rules:
+  # This Ingress maps the kubia.example.com domain name to your service.
   - host: kubia.example.com
     http:
       paths:
+      # All requests will be sent to port 80 of the kubianodeport service.
       - path: /
         backend:
           serviceName: kubia-nodeport
