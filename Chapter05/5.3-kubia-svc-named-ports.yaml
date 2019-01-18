@@ -4,12 +4,15 @@ metadata:
   name: kubia
 spec:
   ports:
+  # Port 80 is mapped to the pods’ port 8080.
   - name: http
     port: 80
     targetPort: 8080
+    # Port 443 is mapped to pods’ port 8443. 
   - name: https
     port: 443
     targetPort: 8443
+  # The label selector always applies to the whole service.
   selector:
     app: kubia
 
