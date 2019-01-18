@@ -1,0 +1,22 @@
+# API group is batch, version is v1beta1
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: batch-job-every-fifteen-minutes
+spec:
+  # This job should run at the 0, 15, 30 and 45 minutes of every hour, every day.
+  schedule: "0,15,30,45 * * * *"
+  # At the latest, the pod must start running at 15 seconds past the scheduled time.
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      # The template for the Job resources that will be created by this CronJob
+      template:
+        metadata:
+          labels:
+            app: periodic-batch-job
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: main
+            image: luksa/batch-job
