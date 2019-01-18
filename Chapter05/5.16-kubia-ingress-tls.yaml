@@ -3,9 +3,12 @@ kind: Ingress
 metadata:
   name: kubia
 spec:
+  # The whole TLS configuration is under this attribute.
   tls:
+  # TLS connections will be accepted for the kubia.example.com hostname.
   - hosts: 
     - kubia.example.com
+    # The private key and the certificate should be obtained from the tls-secret you created previously.
     secretName: tls-secret
   rules:
   - host: kubia.example.com
