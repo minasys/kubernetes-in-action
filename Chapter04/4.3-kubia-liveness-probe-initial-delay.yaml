@@ -10,5 +10,6 @@ spec:
       httpGet:
         path: /
         port: 8080
+      # Kubernetes will wait 15 seconds before executing the first probe.
       initialDelaySeconds: 15
 
