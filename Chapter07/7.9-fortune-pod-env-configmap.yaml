@@ -5,11 +5,15 @@ metadata:
 spec:
   containers:
   - image: luksa/fortune:env
+    # You’re setting the environment variable called INTERVAL.
     env:
     - name: INTERVAL
+      # Instead of setting a fixed value, you're initializing it from a ConfigMap key.
       valueFrom: 
         configMapKeyRef:
+          # The name of the ConfigMap you're referencing
           name: fortune-config
+          # You're setting the variable to whatever is stored under this key in the ConfigMap.
           key: sleep-interval
     name: html-generator
     volumeMounts:
