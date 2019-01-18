@@ -10,6 +10,7 @@ spec:
     # All environment variables will be prefixed with CONFIG_. The prefix here is optional to use. 
     # So if you omit it the environment variables will have the same name as the keys.
     - prefix: CONFIG_
+        # Referencing the ConfigMap called my-config-map
         configMapKeyRef:
           name: fortune-config
     name: html-generator
