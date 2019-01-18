@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: kubia-headless
 spec:
+  # This makes the service headless.
   clusterIP: None
   ports:
   - port: 80
