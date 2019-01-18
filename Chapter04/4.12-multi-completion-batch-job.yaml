@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: multi-completion-batch-job
 spec:
+  # Setting completions to 5 makes this Job run five pods sequentially.
   completions: 5
   template:
     metadata:
