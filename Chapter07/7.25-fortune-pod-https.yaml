@@ -24,6 +24,7 @@ spec:
     - name: config
       mountPath: /etc/nginx/conf.d
       readOnly: true
+    # You configured Nginx to read the cert and key file from /etc/nginx/certs, so you need to mount the Secret volume there.
     - name: certs
       mountPath: /etc/nginx/certs/
       readOnly: true
@@ -39,6 +40,7 @@ spec:
       items:
       - key: my-nginx-config.conf
         path: https.conf
+  # You define the secret volume here, referring to the fortune-https Secret.
   - name: certs
     secret:
       secretName: fortune-https
