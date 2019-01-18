@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: kubia
 spec:
+  # This makes the service proxy redirect all requests originating from the same client IP to the same pod.
   sessionAffinity: ClientIP
   ports:
   - port: 80
