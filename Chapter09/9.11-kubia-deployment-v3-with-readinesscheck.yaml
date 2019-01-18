@@ -4,10 +4,12 @@ metadata:
   name: kubia
 spec:
   replicas: 3
+  # You’re keeping minReadySeconds set to 10.
   minReadySeconds: 10
   strategy:
     rollingUpdate:
       maxSurge: 1
+      # You’re keeping maxUnavailable set to 0 to make the deployment replace pods one by one
       maxUnavailable: 0
     type: RollingUpdate
   template:
@@ -20,7 +22,9 @@ spec:
       - image: luksa/kubia:v3
         name: nodejs
         readinessProbe:
+          # You’re defining a readiness probe that will be executed every second.
           periodSeconds: 1
+          # The readiness probe will perform an HTTP GET request against our container.
           httpGet:
             path: /
             port: 8080
