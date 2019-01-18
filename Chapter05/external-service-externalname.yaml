@@ -3,7 +3,9 @@ kind: Service
 metadata:
   name: external-service
 spec:
+  # Service type is set to ExternalName
   type: ExternalName
+  # The fully qualified domain name of the actual service
   externalName: api.somecompany.com
   ports:
   - port: 80
