@@ -5,8 +5,11 @@ metadata:
 spec:
   volumes:
   - name: mongodb-data
+    # Using awsElasticBlockStore instead of gcePersistentDisk
     awsElasticBlockStore:
+      # Specify the ID of the EBS volume you created.
       volumeID: my-volume
+      # The filesystem type is EXT4 as before.
       fsType: ext4
   containers:
   - image: mongo
