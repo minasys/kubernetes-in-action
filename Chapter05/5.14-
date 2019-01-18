@@ -7,11 +7,12 @@ spec:
   - host: kubia.example.com
     http:
       paths:
+      # Requests to kubia.example.com/kubia will be routed to the kubia service.
       - path: /kubia
         backend:
           serviceName: kubia
           servicePort: 80
-
+       # Requests to kubia.example.com/bar will be routed to the bar service.
       - path: /foo
         backend:
           serviceName: bar
