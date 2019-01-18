@@ -3,7 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pvc 
 spec:
-  storageClassName: fast2
+  # This PVC requests the custom storage class.
+  storageClassName: fast
   resources:
     requests:
       storage: 100Mi
