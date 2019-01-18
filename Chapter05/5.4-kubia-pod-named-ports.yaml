@@ -1,0 +1,11 @@
+kind: Pod
+spec:
+containers:
+  - name: kubia
+    ports:
+    # Container’s port 8080 is called http
+    - name: http
+      containerPort: 8080
+    # Port 8443 is called https.
+    - name: https
+      containerPort: 8443
