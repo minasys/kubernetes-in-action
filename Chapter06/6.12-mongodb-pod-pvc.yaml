@@ -14,6 +14,7 @@ spec:
       protocol: TCP
   volumes:
   - name: mongodb-data
+    # Referencing the PersistentVolumeClaim by name in the pod volume
     persistentVolumeClaim:
       claimName: mongodb-pvc
 
