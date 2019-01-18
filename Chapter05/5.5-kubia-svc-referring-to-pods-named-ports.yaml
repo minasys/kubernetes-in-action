@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: another-service
+  name: kubia
 spec:
   ports:
   # Port 80 is mapped to the container’s port called http.
