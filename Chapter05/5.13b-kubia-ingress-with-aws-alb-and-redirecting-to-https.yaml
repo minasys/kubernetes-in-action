@@ -9,11 +9,11 @@ metadata:
    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
 
 spec:
- rules:
- - host: kubia.example.com
- http:
- paths:
- - path: /
- backend:
- serviceName: kubia-nodeport
- servicePort: 80
+  rules:
+  - host: kubia.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubia-nodeport
+          servicePort: 80
