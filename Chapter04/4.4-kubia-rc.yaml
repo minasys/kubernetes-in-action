@@ -1,11 +1,16 @@
 apiVersion: v1
+# This manifest defines a ReplicationController (RC)
 kind: ReplicationController
 metadata:
+  # The name of this ReplicationController
   name: kubia
 spec:
+  # The desired number of pod instances
   replicas: 3
+  # The pod selector determining what pods the RC is operating on
   selector:
     app: kubia
+  # The pod template for creating new pods
   template:
     metadata:
       labels:
