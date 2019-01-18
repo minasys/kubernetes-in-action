@@ -17,6 +17,7 @@ spec:
         ports:
         - name: http
           containerPort: 8080
+        # A readinessProbe may be defined for each container in the pod.
         readinessProbe:
           exec:
             command:
