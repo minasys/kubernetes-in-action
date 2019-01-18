@@ -4,7 +4,9 @@ metadata:
   name: fortune2s
 spec:
   containers:
+  # Using fortune:args instead of fortune:latest
   - image: luksa/fortune:args
+    # This argument makes the script generate a new fortune every two seconds.
     args: ["2"]
     name: html-generator
     volumeMounts:
