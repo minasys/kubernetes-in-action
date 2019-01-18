@@ -1,0 +1,17 @@
+# Descriptor conforms to version v1 of Kubernetes API
+apiVersion: v1
+# You’re describing a pod.
+kind: Pod
+metadata:
+  # The name of the pod
+  name: kubia-manual
+spec:
+  containers:
+  # Container image to create the container from
+  - image: luksa/kubia
+    # Name of the container
+    name: kubia
+    ports:
+    # The port the app is listening on
+    - containerPort: 8080
+      protocol: TCP
