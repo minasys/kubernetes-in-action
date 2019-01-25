@@ -17,7 +17,7 @@ items:
     persistentVolumeReclaimPolicy: Recycle
     # The volume uses a GCE Persistent Disk as the underlying storage mechanism.
     awsElasticBlockStore:
-      volumeID: vol-00808508b8443a38a
+      volumeID: vol-07dba41902d76c5a5
       fsType: ext4
 - apiVersion: v1
   kind: PersistentVolume
@@ -30,7 +30,7 @@ items:
       - ReadWriteOnce
     persistentVolumeReclaimPolicy: Recycle
     awsElasticBlockStore:
-      volumeID: vol-00808508b8443a38a
+      volumeID: vol-0bf640d3c31388452
       fsType: ext4
 - apiVersion: v1
   kind: PersistentVolume
@@ -43,5 +43,5 @@ items:
       - ReadWriteOnce
     persistentVolumeReclaimPolicy: Recycle
     awsElasticBlockStore:
-      volumeID: vol-00808508b8443a38a
+      volumeID: vol-0ba5452ea550e2613
       fsType: ext4
