@@ -7,6 +7,7 @@ spec:
   replicas: 2
   template:
     metadata:
+      # Pods created by the StatefulSet will have the app=kubia label.
       labels:
         app: kubia
     spec:
@@ -17,8 +18,10 @@ spec:
         - name: http
           containerPort: 8080
         volumeMounts:
+        # The container inside the pod will mount the pvc volume at this path.
         - name: data
           mountPath: /var/data
+  # The PersistentVolumeClaims will be created from this template.
   volumeClaimTemplates:
   - metadata:
       name: data
