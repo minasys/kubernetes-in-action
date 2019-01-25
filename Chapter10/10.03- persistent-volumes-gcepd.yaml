@@ -1,16 +1,21 @@
+# File describes a list of three persistent volumes
 kind: List
 apiVersion: v1
 items:
 - apiVersion: v1
   kind: PersistentVolume
   metadata:
+    # Persistent volumes’ names are pv-a, pv-b, and pv-c
     name: pv-a
   spec:
     capacity:
+      # Capacity of each persistent volume is 1 Mebibyte
       storage: 1Mi
     accessModes:
       - ReadWriteOnce
+    # When the volume is released by the claim, it’s recycled to be used again.
     persistentVolumeReclaimPolicy: Recycle
+    # The volume uses a GCE Persistent Disk as the underlying storage mechanism.
     gcePersistentDisk:
       pdName: pv-a
       fsType: nfs4
