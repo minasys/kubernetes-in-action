@@ -4,7 +4,7 @@ metadata:
   # Name of the Service
   name: kubia
 spec:
-  # The StatefulSet’s governing Service must be headless.
+  # The StatefulSet’s governing Service must be headless. It will enable peer discovery between your pods
   clusterIP: None
   # All pods with the app=kubia label belong to this service.
   selector:
