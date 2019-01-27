@@ -1,3 +1,5 @@
+# This one did not work for me when I tested it with statefulset on AWS. use storageclass method instead!
+
 # File describes a list of three persistent volumes
 kind: List
 apiVersion: v1
