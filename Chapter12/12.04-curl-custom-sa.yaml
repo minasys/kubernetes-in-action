@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: curl-custom-sa
 spec:
+  # This pod uses the foo ServiceAccount instead of the default.
   serviceAccountName: foo
   containers:
   - name: main
