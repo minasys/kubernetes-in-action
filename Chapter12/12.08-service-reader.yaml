@@ -5,7 +5,9 @@ metadata:
   namespace: foo
   name: service-reader
 rules
-# Services are resources in the core apiGroup, which has no name – hence the "".
+# Services are resources in the core apiGroup, which has no name – hence the "". 
+# Each resource type belongs to an API group, which you specify in the apiVersion 
+# field (along with the version) in the resource’s manifest.
 - apiGroups: [""]
   # Getting individual Services (by name) and listing all of them is allowed.
   verbs: ["get", "list"]
