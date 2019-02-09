@@ -3,6 +3,7 @@ kind: ClusterRole metadata:
   # ClusterRoles aren’t namespaced, hence no namespace field.
   name: pv-reader
 rules:
+# In this case, the rules are exactly like those in a regular Role.
 - apiGroups:
   - ""
   resources:
