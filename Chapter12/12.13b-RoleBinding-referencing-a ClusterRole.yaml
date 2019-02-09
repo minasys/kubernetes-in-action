@@ -7,7 +7,8 @@ roleRef:
   # Although you can create a RoleBinding and have it reference a ClusterRole when you
   # want to enable access to namespaced resources, you can’t use the same approach for
   # cluster-level (non-namespaced) resources. To grant access to cluster-level resources,
-  # you must always use a ClusterRoleBinding.
+  # you must always use a ClusterRoleBinding. So this manefist will not work for you, but 
+  # if you point it to a cluster role that manage access to namespaced resources, it will work.
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: pv-reader
