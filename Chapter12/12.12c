@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole metadata:
+  # ClusterRoles aren’t namespaced, hence no namespace field.
+  name: services-reader
+rules:
+# In this case, the rules are exactly like those in a regular Role.
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - get
+  - list
