@@ -1,0 +1,15 @@
+# Binding a pod to a port in the node’s port space
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-hostport
+spec:
+  containers:
+  - image: luksa/kubia
+    name: kubia
+    ports:
+    # The container can be reached on port 8080 of the pod’s IP.
+    - containerPort: 8080
+      # It can also be reached on port 9000 of the node it’s deployed on.
+      hostPort: 9000
+      protocol: TCP
