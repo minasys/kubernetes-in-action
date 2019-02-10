@@ -1,8 +1,10 @@
+# A pod using the node’s network namespace
 apiVersion: v1
 kind: Pod
 metadata:
   name: pod-with-host-network
 spec:
+  # Using the host node’s network namespace
   hostNetwork: true
   containers:
   - name: main
