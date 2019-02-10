@@ -1,3 +1,4 @@
+# Running containers as a specific user
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,4 +9,5 @@ spec:
     image: alpine
     command: ["/bin/sleep", "999999"]
     securityContext:
+      # You need to specify a user ID, not a username (id 405 corresponds to the guest user).
       runAsUser: 405
