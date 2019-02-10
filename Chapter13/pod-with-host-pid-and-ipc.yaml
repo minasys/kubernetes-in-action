@@ -1,9 +1,12 @@
+# Using the host’s PID and IPC namespaces
 apiVersion: v1
 kind: Pod
 metadata:
   name: pod-with-host-pid-and-ipc
 spec:
+  # You want the pod to use the host’s PID namespace.
   hostPID: true
+  # You also want the pod to use the host’s IPC namespace.
   hostIPC: true
   containers:
   - name: main
