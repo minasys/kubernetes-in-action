@@ -1,25 +1,33 @@
+# An example PodSecurityPolicy
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
   name: default
 spec:
+  # Containers aren’t allowed to use the host’s IPC, PID, or network namespace.
   hostIPC: false
   hostPID: false
   hostNetwork: false
   hostPorts:
+  # They can only bind to host ports 10000 to 11000 (inclusive) or host ports 13000 to 14000.
   - min: 10000
     max: 11000
   - min: 13000
     max: 14000
+  # Containers cannot run in privileged mode.
   privileged: false
+  # Containers are forced to run with a read-only root filesystem.
   readOnlyRootFilesystem: true
+  # Containers can run as any user and any group.
   runAsUser:
     rule: RunAsAny
   fsGroup:
     rule: RunAsAny
   supplementalGroups:
     rule: RunAsAny
+  # They can also use any SELinux groups they want.
   seLinux:
     rule: RunAsAny
+  # All volume types can be used in pods.
   volumes:
   - '*'
