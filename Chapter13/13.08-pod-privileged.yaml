@@ -1,3 +1,4 @@
+# A pod with a privileged container
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,4 +9,5 @@ spec:
     image: alpine
     command: ["/bin/sleep", "999999"]
     securityContext:
+      # This container will run in privileged mode
       privileged: true
