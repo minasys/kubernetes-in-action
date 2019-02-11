@@ -1,3 +1,4 @@
+# Dropping a capability from a container
 apiVersion: v1
 kind: Pod
 metadata:
@@ -9,5 +10,6 @@ spec:
     command: ["/bin/sleep", "999999"]
     securityContext:
       capabilities:
+        # You’re not allowing this container to change file ownership.
         drop:
         - CHOWN
