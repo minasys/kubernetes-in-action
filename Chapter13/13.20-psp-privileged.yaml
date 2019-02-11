@@ -1,8 +1,11 @@
+# A PodSecurityPolicy for privileged users
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
+  # The name of this policy is "privileged.”
   name: privileged
 spec:
+  # It allows running privileged containers.
   privileged: true
   runAsUser:
     rule: RunAsAny
