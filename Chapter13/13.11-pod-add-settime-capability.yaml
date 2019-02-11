@@ -1,3 +1,4 @@
+# Adding the CAP_SYS_TIME capability
 apiVersion: v1
 kind: Pod
 metadata:
@@ -7,7 +8,9 @@ spec:
   - name: main
     image: alpine
     command: ["/bin/sleep", "999999"]
+    # Capabilities are added or dropped under the securityContext property.
     securityContext:
       capabilities:
+        # You’re adding the SYS_TIME capability.
         add:
         - SYS_TIME
