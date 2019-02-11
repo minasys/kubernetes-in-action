@@ -1,3 +1,4 @@
+# A PSP snippet allowing the use of only certain volume types
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
