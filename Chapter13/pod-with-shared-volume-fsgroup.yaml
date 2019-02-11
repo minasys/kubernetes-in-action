@@ -1,8 +1,10 @@
+# fsGroup & supplementalGroups
 apiVersion: v1
 kind: Pod
 metadata:
   name: pod-with-shared-volume-fsgroup
 spec:
+  # The fsGroup and supplementalGroups are defined in the security context at the pod level.
   securityContext:
     fsGroup: 555
     supplementalGroups: [666, 777]
@@ -10,6 +12,7 @@ spec:
   - name: first
     image: alpine
     command: ["/bin/sleep", "999999"]
+    # The first container runs as user ID 1111.
     securityContext:
       runAsUser: 1111
     volumeMounts:
@@ -19,12 +22,14 @@ spec:
   - name: second
     image: alpine
     command: ["/bin/sleep", "999999"]
+    # The second container runs as user ID 2222.
     securityContext:
       runAsUser: 2222
     volumeMounts:
     - name: shared-volume
       mountPath: /volume
       readOnly: false
+  # Both containers use the same volume
   volumes:
   - name: shared-volume
     emptyDir:
