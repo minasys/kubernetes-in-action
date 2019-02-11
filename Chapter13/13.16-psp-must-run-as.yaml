@@ -1,3 +1,4 @@
+# Specifying IDs containers must run as
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
@@ -16,10 +17,12 @@ spec:
   runAsUser:
     rule: MustRunAs
     ranges:
+    # Add a single range with min equal to max to set one specific ID.
     - min: 2
       max: 2
   fsGroup:
     rule: MustRunAs
+    # Multiple ranges are supported—here, group IDs can be 2–10 or 20–30 (inclusive).
     ranges:
     - min: 2
       max: 10
@@ -27,6 +30,7 @@ spec:
       max: 30
   supplementalGroups:
     rule: MustRunAs
+    # Multiple ranges are supported—here, group IDs can be 2–10 or 20–30 (inclusive).    
     ranges:
     - min: 2
       max: 10
