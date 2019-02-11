@@ -8,6 +8,8 @@ spec:
     image: alpine
     command: ["/bin/sleep", "999999"]
     securityContext:
+      # If a user tries to create a pod where they explicitly add one of the capabilities listed
+      # in the policy’s requiredDropCapabilities field, the pod is rejected
       capabilities:
         add:
         - SYS_ADMIN
