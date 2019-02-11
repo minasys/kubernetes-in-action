@@ -1,12 +1,16 @@
+# Specifying capabilities in a PodSecurityPolicy
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
   name: default
 spec:
+  # Allow containers to add the SYS_TIME capability.
   allowedCapabilities:
   - SYS_TIME
+  # Automatically add the CHOWN capability to every container.
   defaultAddCapabilities:
   - CHOWN
+  # Require containers to drop the SYS_ADMIN and SYS_MODULE capabilities.
   requiredDropCapabilities:
   - SYS_ADMIN
   - SYS_MODULE
