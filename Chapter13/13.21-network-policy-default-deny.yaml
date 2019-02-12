@@ -1,4 +1,6 @@
 # A default-deny NetworkPolicy
+# When you create this NetworkPolicy in a certain namespace, no one can connect to
+# any pod in that namespace.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
