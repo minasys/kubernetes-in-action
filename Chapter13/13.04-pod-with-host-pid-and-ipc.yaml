@@ -1,4 +1,10 @@
 # Using the host’s PID and IPC namespaces
+
+# Similar to the hostNetwork option are the hostPID and hostIPC pod spec properties.
+#When you set them to true, the pod’s containers will use the node’s PID and IPC
+#namespaces, allowing processes running in the containers to see all the other processes
+#on the node or communicate with them through IPC, respectively.
+
 apiVersion: v1
 kind: Pod
 metadata:
