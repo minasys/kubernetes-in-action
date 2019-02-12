@@ -1,13 +1,27 @@
+# NetworkPolicy for the shopping cart pod(s)
+
+#Now let’s look at another example, where multiple tenants are using the same Kubernetes
+#cluster. Each tenant can use multiple namespaces, and each namespace has a
+#label specifying the tenant it belongs to. For example, one of those tenants is Manning.
+#All their namespaces have been labeled with tenant: manning. In one of their
+#namespaces, they run a Shopping Cart microservice that needs to be available to all
+#pods running in any of their namespaces. Obviously, they don’t want any other tenants
+#to access their microservice.
+#To secure their microservice, they create the NetworkPolicy resource shown in the
+#following listing.
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: shoppingcart-netpolicy
 spec:
+  # This policy applies to pods labeled as microservice= shopping-cart.
   podSelector:
     matchLabels:
       app: shopping-cart 
   ingress:
   - from:
+    # Only pods running in namespaces labeled as tenant=manning are allowed to access the microservice.
     - namespaceSelector:
         matchLabels:
           tenant: manning
