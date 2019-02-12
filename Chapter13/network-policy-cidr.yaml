@@ -1,3 +1,9 @@
+# Specifying an IP block in an ingress rule:
+
+# to allow the shopping-cart pods from the previous section to only be accessible
+#from IPs in the 192.168.1.1 to .255 range, you’d specify the ingress rule in the
+#following way
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -8,5 +14,6 @@ spec:
       app: shopping-cart
   ingress:
   - from:
+    # This ingress rule only allows traffic from clients in the 192.168.1.0/24 IP block.
     - ipBlock:
         cidr: 192.168.1.0/24
