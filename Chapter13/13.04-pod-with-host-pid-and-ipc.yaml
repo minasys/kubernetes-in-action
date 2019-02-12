@@ -18,3 +18,7 @@ spec:
   - name: main
     image: alpine
     command: ["/bin/sleep", "999999"]
+
+# pods usually see only their own processes, but if you run this pod
+# and then list the processes from within its container, you’ll see all the processes running
+# on the host node, not only the ones running in the container
