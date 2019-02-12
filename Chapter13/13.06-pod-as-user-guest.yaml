@@ -1,4 +1,8 @@
 # Running containers as a specific user
+
+# To run a pod under a different user ID than the one that’s baked into the container
+# image, you’ll need to set the pod’s securityContext.runAsUser property
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -11,3 +15,7 @@ spec:
     securityContext:
       # You need to specify a user ID, not a username (id 405 corresponds to the guest user).
       runAsUser: 405
+
+# Now, to see the effect of the runAsUser property, run the id command in this new
+# pod, the way you did before:
+# $ kubectl exec pod-as-user-guest id
