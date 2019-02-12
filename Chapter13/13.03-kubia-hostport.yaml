@@ -1,4 +1,25 @@
 # Binding a pod to a port in the node’s port space
+
+# A related feature allows pods to bind to a port in the node’s default namespace, but
+#still have their own network namespace. This is done by using the hostPort property
+#in one of the container’s ports defined in the spec.containers.ports field.
+
+# Difference between hostPort and NodePort:
+#========================================
+# when a pod is using a hostPort, a
+#connection to the node’s port is forwarded directly to the pod running on that node,
+#whereas with a NodePort service, a connection to the node’s port is forwarded to a
+#randomly selected pod (possibly on another node). The other difference is that with
+#pods using a hostPort, the node’s port is only bound on nodes that run such pods,
+#whereas NodePort services bind the port on all nodes, even on those that don’t run
+#such a pod
+
+
+# It’s important to understand that if a pod is using a specific host port, only one
+#instance of the pod can be scheduled to each node, because two processes can’t bind
+#to the same host port. The Scheduler takes this into account when scheduling pods, so
+#it doesn’t schedule multiple pods to the same node
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -13,3 +34,14 @@ spec:
       # It can also be reached on port 9000 of the node it’s deployed on.
       hostPort: 9000
       protocol: TCP
+
+
+
+# After you create this pod, you can access it through port 9000 of the node it’s scheduled
+#to. If you have multiple nodes, you’ll see you can’t access the pod through that
+#port on the other nodes.
+
+# The hostPort feature is primarily used for exposing system services, which are
+#deployed to every node using DaemonSets. Initially, people also used it to ensure two
+#replicas of the same pod were never scheduled to the same node, but now you have a
+#better way of achieving this—it’s explained in chapter 16.
