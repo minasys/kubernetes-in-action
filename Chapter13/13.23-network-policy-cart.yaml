@@ -30,3 +30,7 @@ spec:
           tenant: manning
     ports:
     - port: 80
+  
+#If the shopping cart provider also wants to give access to other tenants (perhaps to
+#one of their partner companies), they can either create an additional NetworkPolicy
+#resource or add an additional ingress rule to their existing NetworkPolicy.
