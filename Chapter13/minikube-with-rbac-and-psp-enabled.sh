@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Enabling RBAC and PodSecurityPolicy admission control in Minikube
+
 # The following command works with minikube 0.19.0 and 0.19.1, but may not work with later versions (see command below)
 minikube start --extra-config apiserver.Authentication.PasswordFile.BasicAuthFile=/etc/kubernetes/passwd --extra-config=apiserver.Authorization.Mode=RBAC --extra-config=apiserver.GenericServerRunOptions.AdmissionControl=NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,PodSecurityPolicy,ResourceQuota,DefaultTolerationSeconds
 
