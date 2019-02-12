@@ -1,12 +1,17 @@
+# Using egress rules in a NetworkPolicy
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: egress-net-policy
 spec:
+  # This policy applies to pods with the app=webserver label.
   podSelector:
     matchLabels:
       app: webserver
+  # It limits the pods’ outbound traffic.
   egress:
+  # Webserver pods may only connect to pods with the app=database label.
   - to:
     - podSelector:
         matchLabels:
