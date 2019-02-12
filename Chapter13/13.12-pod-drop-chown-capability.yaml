@@ -23,5 +23,5 @@ spec:
         drop:
         - CHOWN
 
-# By dropping the CHOWN capability, you’re not allowed to change the owner of the /tmp
-# directory in this pod.
+# By dropping the CHOWN capability, you’re not allowed to change the owner of the /tmp 
+# directory in this pod for example.
