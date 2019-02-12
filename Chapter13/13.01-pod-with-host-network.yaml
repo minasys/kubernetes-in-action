@@ -21,3 +21,8 @@ spec:
   - name: main
     image: alpine
     command: ["/bin/sleep", "999999"]
+
+
+# After you run the pod, you can use the following command to see that it’s indeed using
+#the host’s network namespace (it sees all the host’s network adapters, for example).
+# $ kubectl exec pod-with-host-network ifconfig
