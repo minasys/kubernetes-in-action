@@ -1,4 +1,23 @@
 # fsGroup & supplementalGroups
+
+# Sharing volumes when containers run as different users:
+#========================================================
+# In chapter 6, we explained how volumes are used to share data between the pod’s
+# containers. You had no trouble writing files in one container and reading them in
+# the other.
+# But this was only because both containers were running as root, giving them full
+# access to all the files in the volume. Now imagine using the runAsUser option we
+# explained earlier. You may need to run the two containers as two different users (perhaps
+# you’re using two third-party container images, where each one runs its process
+# under its own specific user). If those two containers use a volume to share files, they
+# may not necessarily be able to read or write files of one another.
+# That’s why Kubernetes allows you to specify supplemental groups for all the pods
+# running in the container, allowing them to share files, regardless of the user IDs
+# they’re running as. This is done using the following two properties:
+#  fsGroup
+#  supplementalGroups
+
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -33,3 +52,34 @@ spec:
   volumes:
   - name: shared-volume
     emptyDir:
+
+
+# After you create this pod, run a shell in its first container and see what user and group
+# IDs the container is running as:
+# $ kubectl exec -it pod-with-shared-volume-fsgroup -c first sh
+# / $ id
+# uid=1111 gid=0(root) groups=555,666,777
+
+
+# The id command shows the container is running with user ID 1111, as specified in the
+# pod definition. The effective group ID is 0(root), but group IDs 555, 666, and 777 are
+# also associated with the user.
+# In the pod definition, you set fsGroup to 555. Because of this, the mounted volume
+# will be owned by group ID 555, as shown here:
+# / $ ls -l / | grep volume
+# drwxrwsrwx 2 root 555 6 May 29 12:23 volume
+# If you create a file in the mounted volume’s directory, the file is owned by user ID
+# 1111 (that’s the user ID the container is running as) and by group ID 555
+
+# This is different from how ownership is otherwise set up for newly created files. Usually,
+# the user’s effective group ID, which is 0 in your case, is used when a user creates
+# files. You can see this by creating a file in the container’s filesystem instead of in the
+# volume:
+# / $ echo foo > /tmp/foo
+# / $ ls -l /tmp
+# total 4
+# -rw-r--r-- 1 1111 root 4 May 29 12:41 foo
+# As you can see, the fsGroup security context property is used when the process creates
+# files in a volume (but this depends on the volume plugin used), whereas the
+# supplementalGroups property defines a list of additional group IDs the user is associated
+# with.
