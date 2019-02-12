@@ -13,6 +13,9 @@ spec:
   # You want the pod to use the host’s PID namespace.
   hostPID: true
   # You also want the pod to use the host’s IPC namespace.
+  # By setting the hostIPC property to true, processes in the pod’s containers can also
+  # communicate with all the other processes running on the node, through Inter-Process
+  # Communication.
   hostIPC: true
   containers:
   - name: main
