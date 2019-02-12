@@ -10,6 +10,9 @@
 #To secure their microservice, they create the NetworkPolicy resource shown in the
 #following listing.
 
+# This NetworkPolicy ensures only pods running in namespaces labeled as tenant:
+#manning can access their Shopping Cart microservice
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
