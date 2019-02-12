@@ -1,0 +1,29 @@
+# A NetworkPolicy for the Postgres pod
+
+# To let clients connect to the pods in the namespace, you must now explicitly say who
+# can connect to the pods. By who I mean which pods. Let’s explore how to do this
+#through an example. 
+#Imagine having a PostgreSQL database pod running in namespace foo and a webserver
+#pod that uses the database. Other pods are also in the namespace, and you
+#don’t want to allow them to connect to the database. To secure the network, you need
+#to create the NetworkPolicy resource shown in the following listing in the same namespace
+#as the database pod.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: postgres-netpolicy
+spec:
+  # This policy secures access to pods with app=database label.
+  podSelector:
+    matchLabels:
+      app: database
+  ingress:
+  # It allows incoming connections only from pods with the app=webserver label.
+  - from:
+    - podSelector:
+        matchLabels:
+          app: webserver
+    # Connections to this port are allowed.
+    ports:
+    - port: 5432
