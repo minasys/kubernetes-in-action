@@ -1,4 +1,21 @@
 # A container with a read-only filesystem
+
+# Preventing processes from writing to the container’s filesystem:
+#=================================================================
+# You may want to prevent the processes running in the container from writing to the
+# container’s filesystem, and only allow them to write to mounted volumes. You’d want
+# to do that mostly for security reasons.
+
+# Let’s imagine you’re running a PHP application with a hidden vulnerability, allowing
+# an attacker to write to the filesystem. The PHP files are added to the container
+# image at build time and are served from the container’s filesystem. Because of the vulnerability,
+# the attacker can modify those files and inject them with malicious code.
+# These types of attacks can be thwarted by preventing the container from writing to
+# its filesystem, where the app’s executable code is normally stored. This is done by setting
+# the container’s securityContext.readOnlyRootFilesystem property to true, as
+# shown in the following listing.
+
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -19,3 +36,21 @@ spec:
   volumes:
   - name: my-volume
     emptyDir:
+
+
+# When you deploy this pod, the container is running as root, which has write permissions
+# to the / directory, but trying to write a file there fails:
+# $ kubectl exec -it pod-with-readonly-filesystem touch /new-file
+
+# On the other hand, writing to the mounted volume is allowed:
+# $ kubectl exec -it pod-with-readonly-filesystem touch /volume/newfile
+# $ kubectl exec -it pod-with-readonly-filesystem -- ls -la /volume/newfile
+
+# As shown in the example, when you make the container’s filesystem read-only, you’ll
+# probably want to mount a volume in every directory the application writes to (for
+# example, logs, on-disk caches, and so on).
+
+# TIP:
+#=====
+# To increase security, when running pods in production, set their container’s
+# readOnlyRootFilesystem property to true.
