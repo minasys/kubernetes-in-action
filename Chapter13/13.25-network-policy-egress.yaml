@@ -1,5 +1,10 @@
 # Using egress rules in a NetworkPolicy
 
+#The NetworkPolicy in the following example allows pods that have the app=webserver
+#label to only access pods that have the app=database label and nothing else (neither
+#other pods, nor any other IP, regardless of whether it’s internal or external to the
+#cluster).
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
