@@ -26,3 +26,9 @@ spec:
 # After you run the pod, you can use the following command to see that it’s indeed using
 #the host’s network namespace (it sees all the host’s network adapters, for example).
 # $ kubectl exec pod-with-host-network ifconfig
+
+
+# When the Kubernetes Control Plane components are deployed as pods (such as when
+#you deploy your cluster with kubeadm, as explained in appendix B), you’ll find that
+#those pods use the hostNetwork option, effectively making them behave as if they
+#weren’t running inside a pod.
