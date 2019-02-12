@@ -1,6 +1,10 @@
 # A default-deny NetworkPolicy
 # When you create this NetworkPolicy in a certain namespace, no one can connect to
 # any pod in that namespace.
+
+# Note: The CNI plugin or other type of networking solution used in the cluster
+# must support NetworkPolicy, or else there will be no effect on inter-pod
+# connectivity.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -8,3 +12,4 @@ metadata:
 spec:
   # Empty pod selector matches all pods in the same namespace
   podSelector:
+  
