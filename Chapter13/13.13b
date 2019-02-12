@@ -1,0 +1,7 @@
+SETTING SECURITY CONTEXT OPTIONS AT THE POD LEVEL:
+#=================================================
+In all these examples, you’ve set the security context of an individual container. Several
+of these options can also be set at the pod level (through the pod.spec.security-
+Context property). They serve as a default for all the pod’s containers but can be
+overridden at the container level. The pod-level security context also allows you to set
+additional properties, which we’ll explain next.
