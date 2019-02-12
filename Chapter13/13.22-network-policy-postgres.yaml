@@ -9,6 +9,14 @@
 #to create the NetworkPolicy resource shown in the following listing in the same namespace
 #as the database pod.
 
+# The example NetworkPolicy allows pods with the app=webserver label to connect to
+#pods with the app=database label, and only on port 5432. Other pods can’t connect to
+#the database pods, and no one (not even the webserver pods) can connect to anything
+#other than port 5432 of the database pods. This is shown in figure 13.4.
+#Client pods usually connect to server pods through a Service instead of directly to
+#the pod, but that doesn’t change anything. The NetworkPolicy is enforced when connecting
+#through a Service, as well.
+
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
