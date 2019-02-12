@@ -1,4 +1,12 @@
 # An example PodSecurityPolicy
+
+# The following PodSecurityPolicy sample prevents pods from
+# using the host’s IPC, PID, and Network namespaces, and prevents running privileged
+# containers and the use of most host ports (except ports from 10000-11000 and 13000-
+# 14000). The policy doesn’t set any constraints on what users, groups, or SELinux
+# groups the container can run as.
+
+
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
@@ -31,3 +39,12 @@ spec:
   # All volume types can be used in pods.
   volumes:
   - '*'
+
+# After this PodSecurityPolicy resource is posted to the cluster, the API server 
+# will no longer allow you to deploy the privileged pod used earlier. For example
+# $ kubectl create -f pod-privileged.yaml
+
+# Likewise, you can no longer deploy pods that want to use the host’s PID, IPC, or Network
+# namespace. Also, because you set readOnlyRootFilesystem to true in the policy,
+# the container filesystems in all pods will be read-only (containers can only write
+# to volumes).
