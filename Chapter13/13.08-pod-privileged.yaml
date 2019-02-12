@@ -39,3 +39,6 @@ spec:
 # listing, which shows the device files your privileged pod can see.
 # $ kubectl exec -it pod-privileged ls /dev
 
+
+# In fact, the privileged container sees
+# all the host node’s devices. This means it can use any device freely.
